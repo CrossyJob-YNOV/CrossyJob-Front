@@ -25,7 +25,42 @@
       </div>
     </div>
 
-    <div class="homepage__review">
+    <div class="homepage__main">
+      <div class="homepage__search homepage__card">
+        <input
+          type="text"
+          placeholder="Recherche une compétence, un metier, une entreprise..."
+        />
+        <button>search</button>
+      </div>
+      <div class="homepage__current-job homepage__card">
+        <div>
+          <img src="/images/amazon_icon.png" alt="" width="50" />
+          <h4>Looking for figma designers</h4>
+        </div>
+
+        <div>
+          <b>Project Overview</b>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas
+            libero laborum cumque ullam vero eius est eligendi quis! Inventore
+            nemo voluptate doloribus harum ratione perferendis non vero porro
+            modi, deleniti impedit nisi praesentium consectetur repellendus
+            eligendi nesciunt. Perspiciatis facere, quidem dolorum unde quo qui
+            eos repellat? Dolore fugit numquam ex animi in sequi incidunt iusto
+            alias architecto voluptatem? Blanditiis fugiat vel dolores.
+            Laboriosam tenetur vitae at voluptates modi, veritatis repudiandae
+            dolor maxime quod perferendis commodi quae. Quis vel doloribus quam,
+            deserunt maiores beatae corrupti quia error impedit consequuntur
+            quasi quidem quos magnam dicta tenetur. Necessitatibus deserunt
+            placeat sit doloremque, error maiores. Quam eligendi voluptates in
+            quae mollitia dolore perferendis, enim fugiat magnam quia placeat!
+            Adipisci repudiandae perferendis minus, eos aliquid omnis ullam!
+            Numquam officia saepe unde, nobis tenetur cumque, sit laborum qui
+            ipsa obcaecati molestias. Eaque aliquid aut, ut reiciendis, rem unde
+            quidem neque recusandae doloribus est doloremque eveniet ad?
+          </p>
+        </div>
 
     </div>
 
