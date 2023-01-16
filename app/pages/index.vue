@@ -19,9 +19,11 @@
       </div>
 
       <div class="homepage__reviews__list">
-        <div class="homepage__reviews__list__item">
+        <JobItem />
 
-        </div>
+        <JobItem />
+
+        <JobItem />
       </div>
     </div>
 
