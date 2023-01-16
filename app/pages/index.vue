@@ -64,10 +64,26 @@
           </p>
         </div>
 
+        <div>
+          <strong>Skills and overview</strong>
+          <div class="tags">
+            <div>UI Designer</div>
+
+            <div>Figma</div>
+          </div>
+        </div>
+
+        <div>
+          <strong>Details</strong>
+          <input type="text" value="https://google.com" disabled />
+          <button>Postuler</button>
+        </div>
+      </div>
     </div>
 
     <div class="homepage__personnal-information">
 
+      <Profile />
     </div>
   </div>
 </template>
@@ -82,9 +98,51 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .homepage {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    column-gap: 2em;
+.homepage {
+  display: grid;
+  grid-template-columns: 3fr 5fr 2fr;
+  column-gap: 2em;
+  padding: 3em;
+
+  &__card {
+    background: white;
+    padding: 1em;
+    border-radius: 5px;
   }
-</style>
+
+  &__search {
+    margin-bottom: 1em;
+  }
+
+  &__reviews {
+    .homepage__reviews__list {
+      display: grid;
+      grid-template-columns: 1fr;
+      row-gap: 1em;
+    }
+
+    .homepage__reviews__filter {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      justify-items: center;
+      align-items: center;
+      margin-bottom: 1em;
+
+      .homepage__reviews__filter__item {
+        min-width: 100%;
+        input[type='checkbox'] + label {
+          color: black;
+          font-size: 1.2em;
+          padding: 0.5em 1em;
+          min-width: 100%;
+        }
+        input[type='checkbox']:checked + label {
+          background: black;
+          color: white;
+          border-radius: 5px;
+          min-width: 100%;
+        }
+      }
+    }
+  }
+</style></style>
