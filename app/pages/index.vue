@@ -82,7 +82,6 @@
     </div>
 
     <div class="homepage__personnal-information">
-
       <Profile />
     </div>
   </div>
@@ -91,9 +90,9 @@
 <script>
 export default {
   name: 'IndexPage',
-  layout (context) {
-    return "home"
-  }
+  layout(context) {
+    return 'home'
+  },
 }
 </script>
 
@@ -145,4 +144,5 @@ export default {
       }
     }
   }
-</style></style>
+}
+</style>
