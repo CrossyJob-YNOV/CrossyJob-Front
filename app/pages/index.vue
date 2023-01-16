@@ -1,10 +1,21 @@
 <template>
   <div class="homepage">
     <div class="homepage__reviews">
-      <div class="homepage__reviews__filter">
-        <h3>Best Matches</h3>
-        <h3>Featured</h3>
-        <h3>Most Recent</h3>
+      <div class="homepage__reviews__filter homepage__card">
+        <div class="homepage__reviews__filter__item">
+          <input type="checkbox" name="homepage-filter" id="matches" hidden />
+          <label for="matches">Best Matches</label>
+        </div>
+
+        <div class="homepage__reviews__filter__item">
+          <input type="checkbox" name="homepage-filter" id="featured" hidden />
+          <label for="featured">Featured</label>
+        </div>
+
+        <div class="homepage__reviews__filter__item">
+          <input type="checkbox" name="homepage-filter" id="recent" hidden />
+          <label for="recent">Most Recent</label>
+        </div>
       </div>
 
       <div class="homepage__reviews__list">
