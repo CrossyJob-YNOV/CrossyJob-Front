@@ -1,10 +1,15 @@
 @import "font";
+@import "variables";
 
 body {
-    background: #F3F3F3;
+    background: var(--bg-color);
     min-height: 100vh;
     font-family: "Gilroy";
-    font-weight: 400;
+    font-weight: 300;
+}
+
+p {
+    margin-top: 0;
 }
 
 h3, h4 {
