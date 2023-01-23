@@ -1,11 +1,12 @@
 FROM node:12-alpine3.9
 
-CMD "cd app"
+RUN mkdir -p /usr/src/nuxt-app
+WORKDIR /usr/src/nuxt-app
 
-COPY ["package.json", "./"]
+COPY . /usr/src/nuxt-app
 RUN npm install
+RUN npm run build
 
-COPY [".", "."]
+EXPOSE 3000
 
-RUN npm build
-RUN npm start
+CMD ["npm", "run", "start"]
