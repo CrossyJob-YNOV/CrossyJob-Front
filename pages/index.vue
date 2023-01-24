@@ -3,17 +3,17 @@
     <div class="homepage__reviews">
       <div class="homepage__reviews__filter homepage__card">
         <div class="homepage__reviews__filter__item">
-          <input type="checkbox" name="homepage-filter" id="matches" hidden />
+          <input id="matches" type="checkbox" name="homepage-filter" hidden />
           <label for="matches">Best Matches</label>
         </div>
 
         <div class="homepage__reviews__filter__item">
-          <input type="checkbox" name="homepage-filter" id="featured" hidden />
+          <input id="featured" type="checkbox" name="homepage-filter" hidden />
           <label for="featured">Featured</label>
         </div>
 
         <div class="homepage__reviews__filter__item">
-          <input type="checkbox" name="homepage-filter" id="recent" hidden />
+          <input id="recent" type="checkbox" name="homepage-filter" hidden />
           <label for="recent">Most Recent</label>
         </div>
       </div>
