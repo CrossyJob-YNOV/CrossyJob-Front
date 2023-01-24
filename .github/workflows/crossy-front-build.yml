@@ -1,6 +1,8 @@
 name: Crossy Front Build
-on: 
-  workflow_dispatch
+on:
+  workflow_dispatch:
+  push:
+    - main
 jobs:
   build:
     runs-on: ubuntu-latest
