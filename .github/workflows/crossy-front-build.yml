@@ -2,13 +2,13 @@ name: Crossy Front Build
 on:
   workflow_dispatch:
   push:
-    barnches: 
-      - main  
+    barnches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - run: yarn
-      - run: yarn lint
+      - run: yarn lintfix
       - run: docker build .
