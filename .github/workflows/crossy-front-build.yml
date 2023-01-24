@@ -2,7 +2,7 @@ name: Crossy Front Build
 on:
   workflow_dispatch:
   push:
-    barnches:
+    branches:
       - main
 jobs:
   build:
