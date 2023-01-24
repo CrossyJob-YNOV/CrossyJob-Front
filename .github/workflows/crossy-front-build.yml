@@ -2,7 +2,8 @@ name: Crossy Front Build
 on:
   workflow_dispatch:
   push:
-    - main
+    barnches: 
+      - main  
 jobs:
   build:
     runs-on: ubuntu-latest
