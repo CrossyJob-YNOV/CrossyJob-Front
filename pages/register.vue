@@ -9,11 +9,13 @@
                 <h2>Register an account</h2>
 
                 <form action="">
-                    <input type="text" placeholder="Firstname">
-                    <input type="text" placeholder="Lastname">
-                    <input type="text" placeholder="Email">
-                    <input type="text" placeholder="Password">
-                    <input type="text" placeholder="Confirm Password">
+                    <div class="semi-input">
+                        <input type="text" placeholder="Firstname">
+                        <input type="text" placeholder="Lastname">
+                    </div>
+                    <input type="email" placeholder="Email">
+                    <input type="password" placeholder="Password">
+                    <input type="password" placeholder="Confirm Password">
 
                     <button type="submit">
                         Register now !
@@ -62,12 +64,19 @@
                 gap: 1em;
                 grid-template-columns: 1fr;
                 width: 100%;
+
+                .semi-input {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1em;
+                }
                 input {
                     width: 100%;
                     border: 0px;
                     outline: 0;
                     padding: .5em;
                     border-radius: 5px;
+                    box-sizing: border-box;
 
                     &::placeholder {
                         font-style: italic;
