@@ -19,6 +19,8 @@
 </template>
 
 <style lang="scss" scoped>
+@import '../assets/style/variables';
+
 .homepage__reviews__list__item {
   .list__item__header {
     display: flex;
@@ -26,6 +28,14 @@
     align-items: center;
     img {
       width: 50px;
+    }
+  }
+
+  .list__item__content__tags {
+    span {
+      background: var(--bg-color);
+      padding: 0.2em 0.5em;
+      border-radius: 5px;
     }
   }
 }

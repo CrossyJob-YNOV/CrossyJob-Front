@@ -3,17 +3,17 @@
     <div class="homepage__reviews">
       <div class="homepage__reviews__filter homepage__card">
         <div class="homepage__reviews__filter__item">
-          <input type="checkbox" name="homepage-filter" id="matches" hidden />
+          <input id="matches" type="checkbox" name="homepage-filter" hidden />
           <label for="matches">Best Matches</label>
         </div>
 
         <div class="homepage__reviews__filter__item">
-          <input type="checkbox" name="homepage-filter" id="featured" hidden />
+          <input id="featured" type="checkbox" name="homepage-filter" hidden />
           <label for="featured">Featured</label>
         </div>
 
         <div class="homepage__reviews__filter__item">
-          <input type="checkbox" name="homepage-filter" id="recent" hidden />
+          <input id="recent" type="checkbox" name="homepage-filter" hidden />
           <label for="recent">Most Recent</label>
         </div>
       </div>
@@ -36,13 +36,13 @@
         <button>search</button>
       </div>
       <div class="homepage__current-job homepage__card">
-        <div>
+        <div class="homepage__current-job__info">
           <img src="/images/amazon_icon.png" alt="" width="50" />
-          <h4>Looking for figma designers</h4>
+          <h3>Looking for figma designers</h3>
         </div>
 
         <div>
-          <b>Project Overview</b>
+          <h4>Project Overview</h4>
           <p>
             Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas
             libero laborum cumque ullam vero eius est eligendi quis! Inventore
@@ -65,7 +65,7 @@
         </div>
 
         <div>
-          <strong>Skills and overview</strong>
+          <h4>Skills and overview</h4>
           <div class="tags">
             <div>UI Designer</div>
 
@@ -131,7 +131,7 @@ export default {
         min-width: 100%;
         input[type='checkbox'] + label {
           color: black;
-          font-size: 1.2em;
+          font-size: 1.1em;
           padding: 0.5em 1em;
           min-width: 100%;
         }
@@ -141,6 +141,30 @@ export default {
           border-radius: 5px;
           min-width: 100%;
         }
+      }
+    }
+  }
+
+  &__main {
+    h4 {
+      font-weight: bolder;
+      font-size: 1.1em;
+      margin-bottom: 1em;
+    }
+
+    .homepage__current-job__info {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 2em;
+      align-items: center;
+      margin-bottom: 2em;
+
+      img {
+        max-width: 100px;
+      }
+
+      h3 {
+        font-size: 1.2em;
       }
     }
   }
