@@ -16,7 +16,14 @@ jobs:
           registry: harbor.crossyjob.ezyostudio.com
           username: ${{ secrets.REGISTRY_LOGIN }}
           password: ${{ secrets.REGISTRY_PASSWORD }}
-      - run: yarn
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'yarn'
+      - run: yarn --frozen-lockfile
       - run: yarn lintfix
-      - run: docker build . --tag crossy-job-front:lastest
-      - run: docker push harbor.crossyjob.ezyostudio.com/crossy-job/crossy-job-front:latest    
+      - uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: crossy-job-front:lastest,harbor.crossyjob.ezyostudio.com/crossy-job/crossy-job-front:latest    
