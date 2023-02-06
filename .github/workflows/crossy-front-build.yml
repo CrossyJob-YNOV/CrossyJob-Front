@@ -26,4 +26,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: crossy-job-front:lastest,harbor.crossyjob.ezyostudio.com/crossy-job/crossy-job-front:latest    
+          tags: harbor.crossyjob.ezyostudio.com/crossy-job/crossy-job-front:latest    
