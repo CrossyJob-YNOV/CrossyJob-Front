@@ -9,13 +9,11 @@
         <h2>Sign in</h2>
         <form>
           <div class="login__form__item">
-            <label for="email">Email</label>
-            <input id="email" type="email" name="email"/>
+            <input id="email" type="email" name="email" placeholder="Email"/>
           </div>
 
           <div class="login__form__item">
-            <label for="password">Password</label>
-            <input id="password" type="password" name="password"/>
+            <input id="password" type="password" name="password" placeholder="Password"/>
           </div>
 
           <div class="login__form__item">
@@ -65,6 +63,10 @@ export default {
   }
 }
 
+h2 {
+  text-align: center;
+}
+
 .login {
   display: grid;
   justify-content: center;
@@ -73,12 +75,39 @@ export default {
 
 }
 
-.login__form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+.login__form{
+  display: grid;
+  place-content: center;
+  height: 100%;
+  width: 100%;
 
+  form {
+    display: grid;
+    gap: 1em;
+    grid-template-columns: 1fr;
+    width: 100%;
+
+    .semi-input {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1em;
+    }
+    input {
+      width: 100%;
+      border: 0px;
+      outline: 0;
+      padding: .5em;
+      border-radius: 5px;
+      box-sizing: border-box;
+
+      &::placeholder {
+        font-style: italic;
+      }
+    }
+  }
 }
+
+
 
 .login__illustration {
   display: flex;
