@@ -9,11 +9,16 @@
         <h2>Sign in</h2>
         <form>
           <div class="login__form__item">
-            <input id="email" type="email" name="email" placeholder="Email"/>
+            <input id="email" type="email" name="email" placeholder="Email" />
           </div>
 
           <div class="login__form__item">
-            <input id="password" type="password" name="password" placeholder="Password"/>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
           </div>
 
           <div class="login__form__item">
@@ -31,18 +36,17 @@
 </template>
 
 <script>
-
 import lottie from 'lottie-web'
 
 export default {
-  name: "login",
+  name: 'login',
   mounted() {
     lottie.loadAnimation({
       container: this.$refs.animationElement,
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      path: '/lottie/coffee.json'
+      path: '/lottie/coffee.json',
     })
   },
 
@@ -54,12 +58,9 @@ export default {
 
 
 }
-
-
 </script>
 
 <style scoped lang="scss">
-
 .login__logo {
   position: absolute;
   top: 0;
@@ -80,14 +81,16 @@ h2 {
   justify-content: center;
   align-items: center;
   grid-template-columns: 7fr 7fr;
-
 }
 
-.login__form{
+.login__form {
   display: grid;
   place-content: center;
   height: 100%;
-  width: 100%;
+  grid-template-columns: 1fr;
+  width: 70%;
+  place-content: center;
+  margin: auto;
 
   form {
     display: grid;
@@ -104,7 +107,7 @@ h2 {
       width: 100%;
       border: 0;
       outline: 0;
-      padding: .5em;
+      padding: 0.5em;
       border-radius: 5px;
       box-sizing: border-box;
 
@@ -112,10 +115,12 @@ h2 {
         font-style: italic;
       }
     }
+
+    button {
+      width: 100%;
+    }
   }
 }
-
-
 
 .login__illustration {
   display: flex;
@@ -134,8 +139,5 @@ h2 {
     margin-left: auto;
     margin-right: auto;
   }
-
-
-
 }
 </style>
