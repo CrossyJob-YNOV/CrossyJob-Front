@@ -2,7 +2,7 @@
   <div class="register">
     <div class="register__header">
       <div class="register__logo">
-        <img src="/images/Logo-Crossy-Job.png" alt="logo"/>
+        <img src="/images/Logo-Crossy-Job.png" alt="logo" @click="redirect"/>
       </div>
     </div>
 
@@ -47,6 +47,12 @@ export default {
       autoplay: true,
       path: '/lottie/job-hunting.json'
     })
+  },
+
+  methods: {
+    redirect: () => {
+      window.location.href = '/'
+    }
   }
 }
 
@@ -59,7 +65,7 @@ export default {
   display: grid;
   grid-template-rows: auto 1fr;
   min-height: 100vh;
-
+  cursor: pointer;
   .register__logo {
     position: absolute;
     top: 0;
@@ -109,7 +115,7 @@ export default {
 
         input {
           width: 100%;
-          border: 0px;
+          border: 0;
           outline: 0;
           padding: .5em;
           border-radius: 5px;

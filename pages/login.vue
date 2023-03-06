@@ -2,7 +2,7 @@
   <div class="login">
     <div class="login__content">
       <div class="login__logo">
-        <img src="/images/Logo-Crossy-Job.png" alt="logo"/>
+        <img src="/images/Logo-Crossy-Job.png" alt="logo" @click="redirect()"/>
       </div>
 
       <div class="login__form">
@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="login__illustration">
-      <div class="animation" ref="animationElement">
+      <div ref="animationElement" class="animation">
 
       </div>
     </div>
@@ -44,7 +44,15 @@ export default {
       autoplay: true,
       path: '/lottie/coffee.json'
     })
+  },
+
+  methods: {
+    redirect: () => {
+      window.location.href = '/'
+    }
   }
+
+
 }
 
 
@@ -57,7 +65,7 @@ export default {
   top: 0;
   left: 0;
   margin: 1em;
-
+  cursor: pointer;
   img {
     width: 100px;
   }
@@ -94,7 +102,7 @@ h2 {
     }
     input {
       width: 100%;
-      border: 0px;
+      border: 0;
       outline: 0;
       padding: .5em;
       border-radius: 5px;
