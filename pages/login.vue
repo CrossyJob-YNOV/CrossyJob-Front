@@ -97,7 +97,7 @@ h2 {
       width: 100%;
       border: 0px;
       outline: 0;
-      padding: 0.5em;
+      padding: 1em;
       border-radius: 5px;
       box-sizing: border-box;
 
