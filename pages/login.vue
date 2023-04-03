@@ -9,7 +9,7 @@
         <h2>Sign in</h2>
         <form>
           <div class="login__form__item">
-            <input id="email" type="email" name="email" placeholder="Email" />
+            <input id="email" type="email" name="email" placeholder="Email"/>
           </div>
 
           <div class="login__form__item">
@@ -67,6 +67,7 @@ export default {
   left: 0;
   margin: 1em;
   cursor: pointer;
+
   img {
     width: 100px;
   }
@@ -77,10 +78,29 @@ h2 {
 }
 
 .login {
+  min-height: 100vh;
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: 7fr 7fr;
+  @media (min-width: 768px) {
+    grid-template-columns: 7fr 7fr;
+  }
+
+  //space between the two divs in mobile view
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    height: 10vh;
+    justify-content: center;
+  }
+
+}
+
+
+.login__content {
+  @media (max-width: 768px) {
+
+
+  }
 }
 
 .login__form {
@@ -91,6 +111,10 @@ h2 {
   width: 70%;
   place-content: center;
   margin: auto;
+
+  @media (max-width: 768px) {
+    margin-top: 30%;;
+  }
 
   form {
     display: grid;
@@ -103,6 +127,7 @@ h2 {
       grid-template-columns: 1fr;
       gap: 1em;
     }
+
     input {
       width: 100%;
       border: 0;
@@ -122,22 +147,41 @@ h2 {
   }
 }
 
+
 .login__illustration {
-  display: flex;
-  flex-direction: column;
-  justify-content: right;
-  height: 100vh;
-  width: 100%;
-  border-radius: 8% 0 0 8%;
+  @media (min-width: 768px) {
 
-  background-size: cover;
-  background-color: #b7c4ef;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    height: 100vh;
+    width: 100%;
+    border-radius: 8% 0 0 8%;
 
-  .animation {
-    width: 80%;
-    height: 80%;
-    margin-left: auto;
-    margin-right: auto;
+    background-size: cover;
+    background-color: #b7c4ef;
+
+    .animation {
+      width: 80%;
+      height: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  @media (max-width: 768px) {
+
+    display: flex;
+    flex-direction: column-reverse;
+    height: 40vh;
+    width: 100%;
+    border-radius: 80px 80px 0 0;
+    background-size: cover;
+    background-color: #b7c4ef;
+    //Align to the bottom
+    align-self: end;
+
+
   }
 }
+
 </style>
