@@ -1,6 +1,9 @@
 <template>
   <div class="nav">
-    <h1>CrossyJob</h1>
+<!--    <h1>CrossyJob</h1>-->
+<!--    Replace text by a logo-->
+
+    <img src="/images/Logo-Crossy-Job.png" alt="logo" />
 
     <div class="nav__content">
       <h3>Dernieres offres</h3>
@@ -19,6 +22,11 @@
   background: white;
   padding: 0 2em;
 
+  img {
+    width: 100px;
+    cursor: pointer;
+    padding: 10px;
+  }
   .nav__content {
     display: flex;
     justify-content: center;
