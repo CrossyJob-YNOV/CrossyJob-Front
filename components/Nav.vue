@@ -1,7 +1,6 @@
 <template>
   <div class="nav">
 <!--    <h1>CrossyJob</h1>-->
-<!--    Replace text by a logo-->
 
     <img src="/images/Logo-Crossy-Job.png" alt="logo" />
 
