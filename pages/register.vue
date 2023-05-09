@@ -10,14 +10,18 @@
       <div class="register__grid__content">
         <h2>Register an account</h2>
 
-        <form action="">
+        <form @submit.prevent="register()">
           <div class="semi-input">
-            <input type="text" placeholder="Firstname">
-            <input type="text" placeholder="Lastname">
+            <input ref="firstname" type="text" placeholder="Firstname">
+            <input ref="lastname" type="text" placeholder="Lastname">
           </div>
-          <input type="email" placeholder="Email">
-          <input type="password" placeholder="Password">
-          <input type="password" placeholder="Confirm Password">
+          <input ref="email" type="email" placeholder="Email">
+          <input ref="password" type="password" placeholder="Password">
+          <input ref="confirmPassword" type="password" placeholder="Confirm Password">
+
+          <div>
+
+          </div>
 
           <button type="submit">
             Register now !
@@ -38,7 +42,9 @@
 import lottie from 'lottie-web'
 
 export default {
-  name: "login",
+  name: "Login",
+
+
   mounted() {
     lottie.loadAnimation({
       container: this.$refs.animationElement,
@@ -47,6 +53,37 @@ export default {
       autoplay: true,
       path: '/lottie/job-hunting.json'
     })
+  },
+
+  methods: {
+    register: async function () {
+      const firstName = this.$refs.firstname.value
+      const lastName = this.$refs.lastname.value  
+      const email = this.$refs.email.value  
+      const password = this.$refs.password.value  
+      const matchingPassword = this.$refs.confirmPassword.value  
+
+      console.log(firstName, lastName, email, password, matchingPassword)
+
+      if(password !== matchingPassword) {
+        console.log("password don't match")
+        return
+      }
+
+      try {
+        await this.$axios.post("/api/auth/register", {
+        firstname: firstName,
+        lastname: lastName,
+        email,
+        password,
+        matching_password: matchingPassword,
+      })  
+      } catch (error) {
+        console.error(error)
+      }
+
+      
+    },
   }
 }
 
@@ -107,11 +144,17 @@ export default {
           gap: 1em;
         }
 
+        button {
+          background: #c1a7e1;
+          &:hover {
+            background: #ba9edc;
+          }
+        }
+
         input {
           width: 100%;
           border: 0px;
           outline: 0;
-          padding: .5em;
           border-radius: 5px;
           box-sizing: border-box;
 
