@@ -33,14 +33,55 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/auth-next'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/',
+    baseURL: 'http://localhost:3000',
+    proxy: true,
+    credentials: true,
+  },
+
+  proxy: {
+    '/api/': {
+      target: 'http://localhost:9090/',
+      pathRewrite: { '^/api/': '/' }
+    }
+  },
+
+  router: {
+    middleware: ['auth']
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  auth: {
+    redirect: {
+      login: '/login',
+      logout: '/login',
+      callback: '/login',
+      home: '/'
+    },    
+    strategies: {
+      local: {
+        token: {
+          property: 'data.token',
+          global: true,
+          required: true,
+          type: 'Bearer'
+        },
+        user: {
+          property: 'data',
+          autoFetch: true
+        },
+        endpoints: {
+          login: { url: 'http://localhost:9090/auth/login', method: 'post' },
+          user: { url: '/api/users/self', method: 'get' }
+        }
+      }
+    }
+  }
 }
