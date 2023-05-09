@@ -61,9 +61,27 @@ export default {
   auth: {
     redirect: {
       login: '/login',
-      logout: '/',
+      logout: '/login',
       callback: '/login',
       home: '/'
+    },    
+    strategies: {
+      local: {
+        token: {
+          property: 'data.token',
+          global: true,
+          required: true,
+          type: 'Bearer'
+        },
+        user: {
+          property: 'data',
+          autoFetch: true
+        },
+        endpoints: {
+          login: { url: 'http://localhost:9090/auth/login', method: 'post' },
+          user: { url: '/api/users/self', method: 'get' }
+        }
+      }
     }
   }
 }
