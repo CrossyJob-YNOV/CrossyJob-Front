@@ -7,14 +7,21 @@
 
       <div class="login__form">
         <h2>Sign in</h2>
-        <form>
+        <form @submit.prevent="login()">
           <div class="login__form__item">
-            <input id="email" type="email" name="email" placeholder="Email" />
+            <input
+              id="email"
+              ref="email"
+              type="email"
+              name="email"
+              placeholder="Email"
+            />
           </div>
 
           <div class="login__form__item">
             <input
               id="password"
+              ref="password"
               type="password"
               name="password"
               placeholder="Password"
@@ -28,7 +35,7 @@
       </div>
     </div>
     <div class="login__illustration">
-      <div class="animation" ref="animationElement"></div>
+      <div ref="animationElement" class="animation"></div>
     </div>
   </div>
 </template>
@@ -37,7 +44,8 @@
 import lottie from 'lottie-web'
 
 export default {
-  name: 'login',
+  name: 'Login',
+  
   mounted() {
     lottie.loadAnimation({
       container: this.$refs.animationElement,
@@ -47,6 +55,16 @@ export default {
       path: '/lottie/coffee.json',
     })
   },
+
+  methods: {
+    login: async function () {
+      const username = this.$refs.email.value
+      const password = this.$refs.password.value
+
+      await this.$auth.loginWith('local', {data: {username, password}})
+      this.$router.push('/')
+    },
+  }
 }
 </script>
 
