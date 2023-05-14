@@ -36,6 +36,10 @@
             {{ customError }}
           </div>
         </form>
+
+        <div class="footer__links">
+          <nuxt-link to="/register">Pas encore membre ? Inscrivez-vous !</nuxt-link>
+        </div>
       </div>
     </div>
     <div class="login__illustration">
@@ -104,6 +108,14 @@ h2 {
   justify-content: center;
   align-items: center;
   grid-template-columns: 7fr 7fr;
+}
+
+.footer__links {
+  margin: 1em 0;
+
+  a {
+    color: inherit;
+  }
 }
 
 .login__form {
