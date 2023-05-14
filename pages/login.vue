@@ -6,7 +6,7 @@
       </div>
 
       <div class="login__form">
-        <h2>Sign in</h2>
+        <h2>Se connecter</h2>
         <form @submit.prevent="login()">
           <div class="login__form__item">
             <input
@@ -29,9 +29,17 @@
           </div>
 
           <div class="login__form__item">
-            <button>Sign in</button>
+            <button>Se connecter</button>
+          </div>
+
+          <div v-if="customError">
+            {{ customError }}
           </div>
         </form>
+
+        <div class="footer__links">
+          <nuxt-link to="/register">Pas encore membre ? Inscrivez-vous !</nuxt-link>
+        </div>
       </div>
     </div>
     <div class="login__illustration">
@@ -45,6 +53,12 @@ import lottie from 'lottie-web'
 
 export default {
   name: 'Login',
+
+  data() {
+    return {
+      customError: ""
+    }
+  },
   
   mounted() {
     lottie.loadAnimation({
@@ -61,8 +75,13 @@ export default {
       const username = this.$refs.email.value
       const password = this.$refs.password.value
 
-      await this.$auth.loginWith('local', {data: {username, password}})
-      this.$router.push('/')
+      try {
+        await this.$auth.loginWith('local', {data: {username, password}})        
+        this.$router.push('/')  
+      } catch (error) {
+        console.error(error)
+        this.customError = 'Identifiants incorrect, veuillez reessayer'
+      }
     },
   }
 }
@@ -73,7 +92,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  margin: 1em;
+  padding: 1em 2em;
 
   img {
     width: 100px;
@@ -89,6 +108,14 @@ h2 {
   justify-content: center;
   align-items: center;
   grid-template-columns: 7fr 7fr;
+}
+
+.footer__links {
+  margin: 1em 0;
+
+  a {
+    color: inherit;
+  }
 }
 
 .login__form {
