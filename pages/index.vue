@@ -147,10 +147,14 @@ export default {
 
   &__search {
     margin-bottom: 1em;
-    padding: 0 1em;
+    padding: 0;
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 1em;
+
+    button {
+      background-color: #b7c4ef;
+    }
   }
 
   &__reviews {
@@ -195,16 +199,15 @@ export default {
   }
 
   &__current-job {
-
     .tags {
       display: flex;
       flex-direction: row;
       gap: 1em;
 
       .skill {
-        padding: .5em;
+        padding: 0.5em;
         border-radius: 50px;
-        background-color: #b7c4ef;
+        background-color: #efbeb8;
       }
     }
     &__footer {
@@ -213,6 +216,10 @@ export default {
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-end;
+
+      button {
+        background: #b7c4ef
+      }
 
       .footer--link {
         font-size: 0.8em;
