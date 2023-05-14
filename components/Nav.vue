@@ -7,9 +7,7 @@
     <div></div>
 
     <div class="nav__profile">
-      <nuxt-link to="/profile">Profile</nuxt-link>
-      <button @click.prevent="disconnect()">Deconnexion</button>
-      
+      <button @click.prevent="disconnect()"><icon-power></icon-power></button>
     </div>
   </div>
 </template>
@@ -21,7 +19,7 @@ export default {
       await this.$auth.logout()
       this.$router.push('/login')
     },
-  }
+  },
 }
 </script>
 
@@ -30,7 +28,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   background: white;
-  padding: 0 2em;
+  padding: 1em 2em;
 
   .nav__content {
     display: flex;
@@ -39,6 +37,9 @@ export default {
     column-gap: 1em;
   }
 
+  img {
+    width: 100px;
+  }
   .nav__profile {
     align-self: center;
     justify-self: end;
