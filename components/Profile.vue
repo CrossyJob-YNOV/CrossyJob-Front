@@ -1,9 +1,8 @@
 <template>
   <div class="homepage__personnal-information__profile homepage__card">
     <img src="/images/brad.jpg" alt="brad omg" width="80" class="mb-2" />
-    <h3 class="mb-2">John doe</h3>
-    <h4 class="mb-3">Product Owner</h4>
-    <button>Edit Profile</button>
+    <h3 class="mb-2">{{user.firstname}} {{ user.lastname }}</h3>
+    <nuxt-link to="/dashboard"><button>Modifier le profil</button></nuxt-link>
   </div>
 </template>
 
@@ -32,3 +31,19 @@
   }
 }
 </style>
+
+<script>
+export default {
+  name: 'Profile',
+
+  data() {
+    return {
+      user: {}
+    }
+  },
+
+  mounted() {
+    this.user = this.$auth.$state.user
+  }
+}
+</script>
