@@ -1,7 +1,7 @@
 <template>
   <div class="nav">
     <nuxt-link to="/">
-      <h1>CrossyJob</h1>
+      <img src="/images/Logo-Crossy-Job.png" alt="" />
     </nuxt-link>
 
     <div class="nav__content">
