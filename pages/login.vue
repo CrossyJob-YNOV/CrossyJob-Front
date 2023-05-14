@@ -31,6 +31,9 @@
           <div class="login__form__item">
             <button>Se connecter</button>
           </div>
+
+          <div v-if="customError">
+            {{ customError }}
           </div>
         </form>
       </div>
@@ -46,6 +49,12 @@ import lottie from 'lottie-web'
 
 export default {
   name: 'Login',
+
+  data() {
+    return {
+      customError: ""
+    }
+  },
   
   mounted() {
     lottie.loadAnimation({
@@ -62,8 +71,13 @@ export default {
       const username = this.$refs.email.value
       const password = this.$refs.password.value
 
-      await this.$auth.loginWith('local', {data: {username, password}})
-      this.$router.push('/')
+      try {
+        await this.$auth.loginWith('local', {data: {username, password}})        
+        this.$router.push('/')  
+      } catch (error) {
+        console.error(error)
+        this.customError = 'Identifiants incorrect, veuillez reessayer'
+      }
     },
   }
 }
@@ -74,7 +88,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  margin: 1em;
+  padding: 1em 2em;
 
   img {
     width: 100px;
