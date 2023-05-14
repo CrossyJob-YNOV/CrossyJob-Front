@@ -37,6 +37,10 @@ export default {
     img {
       width: 80px;
     }
+
+    button {
+      background-color: #b7c4ef;
+    }
   }
 }
 </style>

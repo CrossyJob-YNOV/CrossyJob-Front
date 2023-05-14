@@ -35,12 +35,16 @@ export default {
     }
   }
 
+  .list__item__content {
+        flex-wrap: wrap;
+        margin-top: 0.5em;
+      }
   .list__item__content__tags {
     display: flex;
     flex-direction: row;
     gap: 0.5em;
     span {
-      background: var(--bg-color);
+      background: #efbeb8;
       padding: 0.2em 0.5em;
       border-radius: 5px;
     }

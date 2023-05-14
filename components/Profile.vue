@@ -16,6 +16,7 @@
 
   button {
     width: 100%;
+    background: #b7c4ef;
   }
 
   img {

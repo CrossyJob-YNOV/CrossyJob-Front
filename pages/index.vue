@@ -13,8 +13,17 @@
         </div>
       </div>
 
-      <div class="homepage__reviews__list">
-        <div v-for="job of jobs" :key="job._id" class="homepage__reviews__list__element">
+
+      <div v-if="loading">
+        <icon-loader/>
+      </div>
+
+      <div class="homepage__reviews__list" v-else>
+        <div
+          v-for="job of jobs"
+          :key="job._id"
+          class="homepage__reviews__list__element"
+        >
           <div @click="setTargetJob(job)">
             <JobItem :job="job" />
           </div>
@@ -26,9 +35,11 @@
       <div class="homepage__search homepage__card">
         <input
           type="text"
+          ref="searchText"
+          @keypress.enter="searchJobs()"
           placeholder="Recherche une compétence, un metier, une entreprise..."
         />
-        <button><icon-search></icon-search></button>
+        <button @click="searchJobs()"><icon-search></icon-search></button>
       </div>
       <div class="homepage__current-job homepage__card" v-if="targetJob">
         <div class="homepage__current-job__info">
@@ -99,13 +110,14 @@ export default {
   data() {
     return {
       targetJob: null,
+      loading: false
     }
   },
 
   async asyncData({ $axios }) {
     const jobs = (await $axios.$get('/api/job-offers')).data
     const jobsSite = (await $axios.$get('/api/job-sites')).data
-    
+
     return { jobs, jobsSite }
   },
 
@@ -118,6 +130,16 @@ export default {
       return this.jobsSite.find(
         (site) => site.id === this.targetJob.job_site_id
       )
+    },
+
+    async searchJobs() {
+      this.loading = true
+      const res = await this.$axios.$post("/api/job-offers/search", {
+        text: this.$refs.searchText.value
+      })
+
+      this.jobs = res.data
+      this.loading = false
     },
 
     async applyOffer() {
@@ -147,10 +169,14 @@ export default {
 
   &__search {
     margin-bottom: 1em;
-    padding: 0 1em;
+    padding: 0;
     display: grid;
     grid-template-columns: 1fr auto;
     gap: 1em;
+
+    button {
+      background-color: #b7c4ef;
+    }
   }
 
   &__reviews {
@@ -195,16 +221,15 @@ export default {
   }
 
   &__current-job {
-
     .tags {
       display: flex;
       flex-direction: row;
       gap: 1em;
 
       .skill {
-        padding: .5em;
+        padding: 0.5em;
         border-radius: 50px;
-        background-color: #b7c4ef;
+        background-color: #efbeb8;
       }
     }
     &__footer {
@@ -213,6 +238,10 @@ export default {
       flex-direction: row;
       justify-content: space-between;
       align-items: flex-end;
+
+      button {
+        background: #b7c4ef
+      }
 
       .footer--link {
         font-size: 0.8em;
