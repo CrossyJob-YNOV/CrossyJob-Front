@@ -14,7 +14,7 @@
       </div>
 
       <div v-if="loading">
-        <icon-loader/>
+        <icon-loader />
       </div>
 
       <div class="homepage__reviews__list" v-else>
@@ -42,7 +42,11 @@
       </div>
       <div class="homepage__current-job homepage__card" v-if="targetJob">
         <div class="homepage__current-job__info">
-          <img src="/images/amazon_icon.png" alt="" width="50" />
+          <img
+            :src="targetJob.image ? targetJob.image : '/images/amazon_icon.png'"
+            alt=""
+            width="50"
+          />
           <h3>{{ targetJob.title }}</h3>
         </div>
 
@@ -148,8 +152,8 @@ export default {
 
     async searchJobs() {
       this.loading = true
-      const res = await this.$axios.$post("/api/job-offers/search", {
-        text: this.$refs.searchText.value
+      const res = await this.$axios.$post('/api/job-offers/search', {
+        text: this.$refs.searchText.value,
       })
 
       this.jobs = res.data
@@ -255,7 +259,7 @@ export default {
       align-items: flex-end;
 
       button {
-        background: #b7c4ef
+        background: #b7c4ef;
       }
 
       .footer--link {
@@ -288,6 +292,10 @@ export default {
 
       img {
         max-width: 100px;
+        width: 100px;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 5px;
       }
 
       h3 {

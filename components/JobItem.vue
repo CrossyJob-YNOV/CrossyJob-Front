@@ -1,7 +1,7 @@
 <template>
   <div class="homepage__reviews__list__item homepage__card">
     <div class="list__item__header">
-      <img src="/images/amazon_icon.png" alt="" />
+      <img :src="job.image ? job.image : '/images/amazon_icon.png'" alt="" />
       <div>
         <h4>{{job.title}}</h4>
         <p><b>{{ job.employment_type }}</b> - {{ job.location }} - <i>({{ job.salary_range.min }} -
@@ -32,6 +32,9 @@ export default {
     align-items: center;
     img {
       width: 50px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 50px;
     }
   }
 
