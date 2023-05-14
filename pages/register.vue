@@ -8,7 +8,7 @@
 
     <div class="register__grid">
       <div class="register__grid__content">
-        <h2>Register an account</h2>
+        <h2>Créer un compte</h2>
 
         <form @submit.prevent="register()">
           <div class="semi-input">
@@ -24,7 +24,7 @@
           </div>
 
           <button type="submit">
-            Register now !
+            S'inscrire !
           </button>
         </form>
       </div>
