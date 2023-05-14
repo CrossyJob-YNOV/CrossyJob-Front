@@ -6,7 +6,7 @@
       </div>
 
       <div class="login__form">
-        <h2>Sign in</h2>
+        <h2>Se connecter</h2>
         <form @submit.prevent="login()">
           <div class="login__form__item">
             <input
@@ -29,7 +29,8 @@
           </div>
 
           <div class="login__form__item">
-            <button>Sign in</button>
+            <button>Se connecter</button>
+          </div>
           </div>
         </form>
       </div>
