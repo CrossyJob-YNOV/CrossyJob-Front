@@ -4,17 +4,12 @@
       <div class="homepage__reviews__filter homepage__card">
         <div class="homepage__reviews__filter__item">
           <input id="matches" type="checkbox" name="homepage-filter" hidden />
-          <label for="matches">Best Matches</label>
-        </div>
-
-        <div class="homepage__reviews__filter__item">
-          <input id="featured" type="checkbox" name="homepage-filter" hidden />
-          <label for="featured">Featured</label>
+          <label for="matches">Meilleurs résultat</label>
         </div>
 
         <div class="homepage__reviews__filter__item">
           <input id="recent" type="checkbox" name="homepage-filter" hidden />
-          <label for="recent">Most Recent</label>
+          <label for="recent">Plus récent</label>
         </div>
       </div>
 
@@ -122,13 +117,14 @@ export default {
 
     .homepage__reviews__filter {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       justify-items: center;
       align-items: center;
       margin-bottom: 1em;
 
       .homepage__reviews__filter__item {
         min-width: 100%;
+        text-align: center;
         input[type='checkbox'] + label {
           color: black;
           font-size: 1.1em;
