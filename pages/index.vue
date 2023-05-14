@@ -3,16 +3,15 @@
     <div class="homepage__reviews">
       <div class="homepage__reviews__filter homepage__card">
         <div class="homepage__reviews__filter__item">
-          <input id="matches" type="checkbox" name="homepage-filter" hidden />
+          <input id="matches" type="radio" name="homepage-filter" value="best_result" v-model="offerFilters" hidden />
           <label for="matches">Meilleurs résultat</label>
         </div>
 
         <div class="homepage__reviews__filter__item">
-          <input id="recent" type="checkbox" name="homepage-filter" hidden />
+          <input id="recent" type="radio" name="homepage-filter" value="most_recent" v-model="offerFilters" hidden />
           <label for="recent">Plus récent</label>
         </div>
       </div>
-
 
       <div v-if="loading">
         <icon-loader/>
@@ -20,7 +19,7 @@
 
       <div class="homepage__reviews__list" v-else>
         <div
-          v-for="job of jobs"
+          v-for="job of computeJobs"
           :key="job._id"
           class="homepage__reviews__list__element"
         >
@@ -110,7 +109,8 @@ export default {
   data() {
     return {
       targetJob: null,
-      loading: false
+      loading: false,
+      offerFilters: "best_result"
     }
   },
 
@@ -119,6 +119,20 @@ export default {
     const jobsSite = (await $axios.$get('/api/job-sites')).data
 
     return { jobs, jobsSite }
+  },
+
+  computed: {
+    computeJobs() { 
+      
+      if (this.offerFilters === "most_recent") {
+        
+        const newJobs = this.jobs
+        newJobs.sort((a,b) => new Date(b.date) - new Date(a.date))
+        console.log("computing", newJobs)
+        return newJobs
+      }
+      return this.jobs
+     }
   },
 
   methods: {
@@ -204,13 +218,14 @@ export default {
       .homepage__reviews__filter__item {
         min-width: 100%;
         text-align: center;
-        input[type='checkbox'] + label {
+        input[type='radio'] + label {
           color: black;
           font-size: 1.1em;
           padding: 0.5em 1em;
           min-width: 100%;
+          transition: background .1s ease-in, color .1s ease-in;
         }
-        input[type='checkbox']:checked + label {
+        input[type='radio']:checked + label {
           background: black;
           color: white;
           border-radius: 5px;
