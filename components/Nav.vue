@@ -3,12 +3,8 @@
     <nuxt-link to="/">
       <img src="/images/Logo-Crossy-Job.png" alt="" />
     </nuxt-link>
-
-    <div class="nav__content">
-      <h3>Dernieres offres</h3>
-      <h3>Classements</h3>
-      <h3>Accueil</h3>
-    </div>
+    
+    <div></div>
 
     <div class="nav__profile">
       <nuxt-link to="/profile">Profile</nuxt-link>
