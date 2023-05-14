@@ -19,13 +19,17 @@
           <input ref="password" type="password" placeholder="Password">
           <input ref="confirmPassword" type="password" placeholder="Confirm Password">
 
-          <div>
-
+          <div v-if="errorMessage">
+            {{ errorMessage }}
           </div>
 
           <button type="submit">
             S'inscrire !
           </button>
+
+          <div v-if="errorResponse.length">
+            {{ errorResponse.join(', ') }}
+          </div>
         </form>
       </div>
 
@@ -44,6 +48,12 @@ import lottie from 'lottie-web'
 export default {
   name: "Login",
 
+  data() {
+    return {
+      errorMessage: "",
+      errorResponse: []
+    }
+  },
 
   mounted() {
     lottie.loadAnimation({
@@ -63,23 +73,30 @@ export default {
       const password = this.$refs.password.value  
       const matchingPassword = this.$refs.confirmPassword.value  
 
-      console.log(firstName, lastName, email, password, matchingPassword)
-
       if(password !== matchingPassword) {
-        console.log("password don't match")
+        this.errorMessage = "Password does not match"
         return
       }
 
       try {
-        await this.$axios.post("/api/auth/register", {
+       const res = await this.$axios.post("/api/auth/register", {
         firstname: firstName,
         lastname: lastName,
         email,
         password,
         matching_password: matchingPassword,
       })  
+
+      console.log(res)
+
+      await this.$auth.loginWith('local', {data: {username: email, password}})        
+      this.$router.push('/tags-select')  
+      
       } catch (error) {
-        console.error(error)
+        const res = error.response
+        if(res.data.data.errors) {
+          this.errorResponse = Object.values(res.data.data.errors).map((values) => values)
+        }
       }
 
       
