@@ -33,7 +33,7 @@
           type="text"
           placeholder="Recherche une compétence, un metier, une entreprise..."
         />
-        <button>search</button>
+        <button><icon-search></icon-search></button>
       </div>
       <div class="homepage__current-job homepage__card">
         <div class="homepage__current-job__info">
