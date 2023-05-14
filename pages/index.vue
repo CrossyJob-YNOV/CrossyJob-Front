@@ -4,26 +4,21 @@
       <div class="homepage__reviews__filter homepage__card">
         <div class="homepage__reviews__filter__item">
           <input id="matches" type="checkbox" name="homepage-filter" hidden />
-          <label for="matches">Best Matches</label>
-        </div>
-
-        <div class="homepage__reviews__filter__item">
-          <input id="featured" type="checkbox" name="homepage-filter" hidden />
-          <label for="featured">Featured</label>
+          <label for="matches">Meilleurs résultat</label>
         </div>
 
         <div class="homepage__reviews__filter__item">
           <input id="recent" type="checkbox" name="homepage-filter" hidden />
-          <label for="recent">Most Recent</label>
+          <label for="recent">Plus récent</label>
         </div>
       </div>
 
       <div class="homepage__reviews__list">
-        <JobItem />
-
-        <JobItem />
-
-        <JobItem />
+        <div v-for="job of jobs" :key="job._id" class="homepage__reviews__list__element">
+          <div @click="setTargetJob(job)">
+            <JobItem :job="job" />
+          </div>
+        </div>
       </div>
     </div>
 
@@ -33,50 +28,57 @@
           type="text"
           placeholder="Recherche une compétence, un metier, une entreprise..."
         />
-        <button>search</button>
+        <button><icon-search></icon-search></button>
       </div>
-      <div class="homepage__current-job homepage__card">
+      <div class="homepage__current-job homepage__card" v-if="targetJob">
         <div class="homepage__current-job__info">
           <img src="/images/amazon_icon.png" alt="" width="50" />
-          <h3>Looking for figma designers</h3>
+          <h3>{{ targetJob.title }}</h3>
         </div>
 
         <div>
           <h4>Project Overview</h4>
-          <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas
-            libero laborum cumque ullam vero eius est eligendi quis! Inventore
-            nemo voluptate doloribus harum ratione perferendis non vero porro
-            modi, deleniti impedit nisi praesentium consectetur repellendus
-            eligendi nesciunt. Perspiciatis facere, quidem dolorum unde quo qui
-            eos repellat? Dolore fugit numquam ex animi in sequi incidunt iusto
-            alias architecto voluptatem? Blanditiis fugiat vel dolores.
-            Laboriosam tenetur vitae at voluptates modi, veritatis repudiandae
-            dolor maxime quod perferendis commodi quae. Quis vel doloribus quam,
-            deserunt maiores beatae corrupti quia error impedit consequuntur
-            quasi quidem quos magnam dicta tenetur. Necessitatibus deserunt
-            placeat sit doloremque, error maiores. Quam eligendi voluptates in
-            quae mollitia dolore perferendis, enim fugiat magnam quia placeat!
-            Adipisci repudiandae perferendis minus, eos aliquid omnis ullam!
-            Numquam officia saepe unde, nobis tenetur cumque, sit laborum qui
-            ipsa obcaecati molestias. Eaque aliquid aut, ut reiciendis, rem unde
-            quidem neque recusandae doloribus est doloremque eveniet ad?
+
+          <p v-if="targetJob.employment_type">
+            <b>Type d'emploi: </b>{{ targetJob.employment_type }}
+          </p>
+
+          <p v-if="targetJob.location">
+            <b>Localisation: </b>{{ targetJob.location }}
+          </p>
+
+          <p v-if="targetJob.years_of_experience">
+            <b>Expériences: </b>{{ targetJob.years_of_experience }} ans
+          </p>
+
+          <p v-if="targetJob.positions_count">
+            <b>Poste à pourvoir: </b> {{ targetJob.positions_count }} emploi(s)
+          </p>
+
+          <p v-if="targetJob.salary_range">
+            <b>Salaire: </b> {{ targetJob.salary_range.min }} -
+            {{ targetJob.salary_range.max }} salaire annuels
           </p>
         </div>
 
         <div>
           <h4>Skills and overview</h4>
           <div class="tags">
-            <div>UI Designer</div>
-
-            <div>Figma</div>
+            <div v-for="skill of targetJob.skills" :key="skill" class="skill">
+              {{ skill }}
+            </div>
           </div>
         </div>
 
-        <div>
-          <strong>Details</strong>
-          <input type="text" value="https://google.com" disabled />
-          <button>Postuler</button>
+        <div class="homepage__current-job__footer">
+          <button @click="applyOffer">Postuler</button>
+
+          <div class="footer--link">
+            Propulsé par
+            <a :href="getJobSite()?.url" target="_blank">{{
+              getJobSite()?.title
+            }}</a>
+          </div>
         </div>
       </div>
     </div>
@@ -92,6 +94,40 @@ export default {
   name: 'IndexPage',
   layout(context) {
     return 'home'
+  },
+
+  data() {
+    return {
+      targetJob: null,
+    }
+  },
+
+  async asyncData({ $axios }) {
+    const jobs = (await $axios.$get('/api/job-offers')).data
+    const jobsSite = (await $axios.$get('/api/job-sites')).data
+    
+    return { jobs, jobsSite }
+  },
+
+  methods: {
+    setTargetJob(job) {
+      this.targetJob = job
+    },
+
+    getJobSite() {
+      return this.jobsSite.find(
+        (site) => site.id === this.targetJob.job_site_id
+      )
+    },
+
+    async applyOffer() {
+      try {
+        await this.$axios.$put(`/api/job-offers/apply/${this.targetJob.id}`)
+        if (this.targetJob.url) {
+          window.open(this.targetJob.url, '_blank')
+        }
+      } catch (error) {}
+    },
   },
 }
 </script>
@@ -111,6 +147,10 @@ export default {
 
   &__search {
     margin-bottom: 1em;
+    padding: 0 1em;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 1em;
   }
 
   &__reviews {
@@ -118,17 +158,26 @@ export default {
       display: grid;
       grid-template-columns: 1fr;
       row-gap: 1em;
+      max-height: 75vh;
+      overflow-y: scroll;
+      scroll-behavior: smooth;
+      scroll-snap-type: y proximity;
+
+      &__element {
+        scroll-snap-align: start;
+      }
     }
 
     .homepage__reviews__filter {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
       justify-items: center;
       align-items: center;
       margin-bottom: 1em;
 
       .homepage__reviews__filter__item {
         min-width: 100%;
+        text-align: center;
         input[type='checkbox'] + label {
           color: black;
           font-size: 1.1em;
@@ -140,6 +189,40 @@ export default {
           color: white;
           border-radius: 5px;
           min-width: 100%;
+        }
+      }
+    }
+  }
+
+  &__current-job {
+
+    .tags {
+      display: flex;
+      flex-direction: row;
+      gap: 1em;
+
+      .skill {
+        padding: .5em;
+        border-radius: 50px;
+        background-color: #b7c4ef;
+      }
+    }
+    &__footer {
+      margin-top: 1em;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      .footer--link {
+        font-size: 0.8em;
+        font-style: italic;
+        opacity: 0.8;
+
+        a {
+          color: inherit;
+          text-decoration: none;
+          font-weight: bold;
         }
       }
     }

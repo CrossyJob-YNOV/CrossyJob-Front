@@ -1,19 +1,13 @@
 <template>
   <div class="nav">
     <nuxt-link to="/">
-      <h1>CrossyJob</h1>
+      <img src="/images/Logo-Crossy-Job.png" alt="" />
     </nuxt-link>
-
-    <div class="nav__content">
-      <h3>Dernieres offres</h3>
-      <h3>Classements</h3>
-      <h3>Accueil</h3>
-    </div>
+    
+    <div></div>
 
     <div class="nav__profile">
-      <nuxt-link to="/profile">Profile</nuxt-link>
-      <button @click.prevent="disconnect()">Deconnexion</button>
-      
+      <button @click.prevent="disconnect()"><icon-power></icon-power></button>
     </div>
   </div>
 </template>
@@ -25,7 +19,7 @@ export default {
       await this.$auth.logout()
       this.$router.push('/login')
     },
-  }
+  },
 }
 </script>
 
@@ -34,7 +28,7 @@ export default {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   background: white;
-  padding: 0 2em;
+  padding: 1em 2em;
 
   .nav__content {
     display: flex;
@@ -43,6 +37,9 @@ export default {
     column-gap: 1em;
   }
 
+  img {
+    width: 100px;
+  }
   .nav__profile {
     align-self: center;
     justify-self: end;

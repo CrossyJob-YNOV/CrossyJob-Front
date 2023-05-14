@@ -3,20 +3,24 @@
     <div class="list__item__header">
       <img src="/images/amazon_icon.png" alt="" />
       <div>
-        <h4>Looking for figma designers</h4>
-        <p>Une rapide description du poste et ce sur quoi il consiste</p>
+        <h4>{{job.title}}</h4>
+        <p><b>{{ job.employment_type }}</b> - {{ job.location }} - <i>({{ job.salary_range.min }} -
+            {{ job.salary_range.max }})€</i></p>
       </div>
-      <button>fav</button>
     </div>
     <div class="list__item__content">
       <div class="list__item__content__tags">
-        <span>UI Designer</span>
-        <span>figma</span>
-        <span>Landing Page</span>
+        <span v-for="skill of job.skills" :key="skill">{{skill}}</span>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: ['job']
+}
+</script>
 
 <style lang="scss" scoped>
 @import '../assets/style/variables';
@@ -32,6 +36,9 @@
   }
 
   .list__item__content__tags {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5em;
     span {
       background: var(--bg-color);
       padding: 0.2em 0.5em;
