@@ -6,7 +6,6 @@
         <h2>{{user.firstname}} {{ user.lastname }}</h2>
       </div>
     </div>
-    <button>Modifier le profil</button>
   </div>
 </template>
 

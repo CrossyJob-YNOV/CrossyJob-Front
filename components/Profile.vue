@@ -1,6 +1,6 @@
 <template>
   <div class="homepage__personnal-information__profile homepage__card">
-    <img src="/images/brad.jpg" alt="brad omg" width="80" class="mb-2" />
+    <img src="/images/user-picto.png" alt="brad omg" width="80" class="mb-2" />
     <h3 class="mb-2">{{user.firstname}} {{ user.lastname }}</h3>
     <nuxt-link to="/dashboard"><button>Modifier le profil</button></nuxt-link>
   </div>
