@@ -47,6 +47,7 @@ import lottie from 'lottie-web'
 
 export default {
   name: "Login",
+  auth: "guest",
 
   data() {
     return {
