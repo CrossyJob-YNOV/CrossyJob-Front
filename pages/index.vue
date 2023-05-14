@@ -14,11 +14,11 @@
       </div>
 
       <div class="homepage__reviews__list">
-        <JobItem />
-
-        <JobItem />
-
-        <JobItem />
+        <div v-for="job of jobs" :key="job._id" class="homepage__reviews__list__element">
+          <div @click="setTargetJob(job)">
+            <JobItem :job="job" />
+          </div>
+        </div>
       </div>
     </div>
 
@@ -87,6 +87,9 @@ export default {
   name: 'IndexPage',
   layout(context) {
     return 'home'
+  },
+  async asyncData({ $axios }) {
+    const jobs = (await $axios.$get('/api/job-offers')).data
   },
 }
 </script>
