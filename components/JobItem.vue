@@ -33,7 +33,7 @@ export default {
     img {
       width: 50px;
     aspect-ratio: 1/1;
-    object-fit: cover;
+    object-fit: contain;
     border-radius: 50px;
     }
   }

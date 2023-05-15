@@ -3,7 +3,7 @@
     <profile-header></profile-header>
 
     <div class="job-apply">
-      <h3 class="mb-3">Derniere offre postulées</h3>
+      <h3 class="mb-3">Dernières offres postulées</h3>
 
       <div v-if="userJobs.length">
         <div class="job-items__grid">

@@ -22,7 +22,7 @@
   img {
     border-radius: 50%;
     aspect-ratio: 1;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
   }
 

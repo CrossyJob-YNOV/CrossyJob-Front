@@ -294,7 +294,7 @@ export default {
         max-width: 100px;
         width: 100px;
         aspect-ratio: 1;
-        object-fit: cover;
+        object-fit: contain;
         border-radius: 5px;
       }
 
